@@ -16,10 +16,7 @@
 - It will take 15 to 20 minutes to create the Cluster Control Plane 
 ```
 # Create Cluster
-eksctl create cluster --name=eksdemo1 \
-                      --region=us-east-1 \
-                      --zones=us-east-1a,us-east-1b \
-                      --without-nodegroup 
+eksctl create cluster --name=eksdemo1 --region=ap-south-1 --zones=ap-south-1a,ap-south-1b --without-nodegroup
 
 # Get List of clusters
 eksctl get cluster                  
@@ -38,13 +35,9 @@ eksctl utils associate-iam-oidc-provider \
     --approve
 
 # Replace with region & cluster name
-eksctl utils associate-iam-oidc-provider \
-    --region us-east-1 \
-    --cluster eksdemo1 \
-    --approve
+eksctl utils associate-iam-oidc-provider --region ap-south-1 --cluster eksdemo1 --approve
+
 ```
-
-
 
 ## Step-03: Create EC2 Keypair
 - Create a new EC2 Keypair with name as `kube-demo`
@@ -54,23 +47,10 @@ eksctl utils associate-iam-oidc-provider \
 ## Step-04: Create Node Group with additional Add-Ons in Public Subnets
 - These add-ons will create the respective IAM policies for us automatically within our Node Group role.
  ```
-# Create Public Node Group   
-eksctl create nodegroup --cluster=eksdemo1 \
-                        --region=us-east-1 \
-                        --name=eksdemo1-ng-public1 \
-                        --node-type=t3.medium \
-                        --nodes=2 \
-                        --nodes-min=2 \
-                        --nodes-max=4 \
-                        --node-volume-size=20 \
-                        --ssh-access \
-                        --ssh-public-key=kube-demo \
-                        --managed \
-                        --asg-access \
-                        --external-dns-access \
-                        --full-ecr-access \
-                        --appmesh-access \
-                        --alb-ingress-access 
+# Create Public Node Group
+
+eksctl create nodegroup --cluster=eksdemo1 --region=us-east-1 --name=eksdemo1-ng-public1 --node-type=t3.medium --nodes=2 --nodes-min=2 --nodes-max=4 --node-volume-size=20 --ssh-access --ssh-public-key=kube-demo --managed --asg-access --external-dns-access --full-ecr-access --appmesh-access --alb-ingress-access
+
 ```
 
 ## Step-05: Verify Cluster & Nodes

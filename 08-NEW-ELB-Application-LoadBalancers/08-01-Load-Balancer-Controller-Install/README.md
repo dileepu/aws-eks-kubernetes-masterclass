@@ -175,19 +175,15 @@ eksctl create iamserviceaccount \
   --cluster=my_cluster \
   --namespace=kube-system \
   --name=aws-load-balancer-controller \ #Note:  K8S Service Account Name that need to be bound to newly created IAM Role
-  --attach-policy-arn=arn:aws:iam::111122223333:policy/AWSLoadBalancerControllerIAMPolicy \
+  --attach-policy-arn=arn:aws:iam::992382807653:policy/AWSLoadBalancerControllerIAMPolicy \
   --override-existing-serviceaccounts \
   --approve
 
 
 # Replaced name, cluster and policy arn (Policy arn we took note in step-02)
-eksctl create iamserviceaccount \
-  --cluster=eksdemo1 \
-  --namespace=kube-system \
-  --name=aws-load-balancer-controller \
-  --attach-policy-arn=arn:aws:iam::180789647333:policy/AWSLoadBalancerControllerIAMPolicy \
-  --override-existing-serviceaccounts \
-  --approve
+
+eksctl create iamserviceaccount --cluster=my_cluster --namespace=kube-system --name=aws-load-balancer-controller --attach-policy-arn=arn:aws:iam::992382807653:policy/AWSLoadBalancerControllerIAMPolicy --override-existing-serviceaccounts --approve
+
 ```
 - **Sample Output**
 ```t

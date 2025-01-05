@@ -182,7 +182,7 @@ eksctl create iamserviceaccount \
 
 # Replaced name, cluster and policy arn (Policy arn we took note in step-02)
 
-eksctl create iamserviceaccount --cluster=my_cluster --namespace=kube-system --name=aws-load-balancer-controller --attach-policy-arn=arn:aws:iam::992382807653:policy/AWSLoadBalancerControllerIAMPolicy --override-existing-serviceaccounts --approve
+eksctl create iamserviceaccount --cluster=eksdemo1 --namespace=kube-system --name=aws-load-balancer-controller --attach-policy-arn=arn:aws:iam::992382807653:policy/AWSLoadBalancerControllerIAMPolicy --override-existing-serviceaccounts --approve
 
 ```
 - **Sample Output**
